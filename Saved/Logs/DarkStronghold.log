@@ -1442,3 +1442,84 @@ LogConfig: Set CVar [[r.VRS.ContrastAdaptiveShading:1]]
 [2025.03.23-13.46.08:659][ 15]LogFab: Display: User client id: xyza7891REBVsEqSJRRNXmlS7EQHM459
 [2025.03.23-13.46.08:960][ 24]LogEOSSDK: Warning: LogEOS: Error response received from backend. ServiceName=[Friend], OperationName=[GetBlockList], Url=[<Redacted>], HttpStatus=[403], ErrorCode=[errors.com.epicgames.common.insufficient_scopes], NumericErrorCode=[1056], ErrorMessage=[Insufficient access scopes. Expected: [friends_list]], CorrId=[EOS-KcwqNudNYk2PYh4yw-DVLg-6pTB4mnvo0qB4D4pID2awA]
 [2025.03.23-13.47.46:117][907]LogDerivedDataCache: C:/Users/ricca/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:00.000 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 0 files in 1 folders with total size 0 MiB.
+[2025.03.23-13.51.51:876][644]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 357.879578
+[2025.03.23-13.51.52:876][648]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.03.23-13.51.52:876][648]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 358.546143, Update Interval: 337.153229
+[2025.03.23-13.53.23:273][ 24]LogUObjectHash: Compacting FUObjectHashTables data took   0.61ms
+[2025.03.23-13.53.23:302][ 24]LogStall: Shutdown...
+[2025.03.23-13.53.23:302][ 24]LogStall: Shutdown complete.
+[2025.03.23-13.53.23:317][ 24]LogSlate: Window 'DarkStronghold - Unreal Editor' being destroyed
+[2025.03.23-13.53.23:320][ 24]LogWindowsTextInputMethodSystem: Activated input method: Italiano (Italia) - (Keyboard).
+[2025.03.23-13.53.23:362][ 24]Cmd: QUIT_EDITOR
+[2025.03.23-13.53.23:362][ 25]LogCore: Engine exit requested (reason: UUnrealEdEngine::CloseEditor())
+[2025.03.23-13.53.23:363][ 25]LogCore: Engine exit requested (reason: EngineExit() was called; note: exit was already requested)
+[2025.03.23-13.53.23:364][ 25]LogStaticMesh: Abandoning remaining async distance field tasks for shutdown
+[2025.03.23-13.53.23:364][ 25]LogStaticMesh: Abandoning remaining async card representation tasks for shutdown
+[2025.03.23-13.53.23:365][ 25]LogWorld: UWorld::CleanupWorld for Demo1, bSessionEnded=true, bCleanupResources=true
+[2025.03.23-13.53.23:366][ 25]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.03.23-13.53.23:366][ 25]LogWorldPartition: UWorldPartition::Uninitialize : World = /Game/SoulsLikeBaseSystem/Demo/Maps/Demo1.Demo1
+[2025.03.23-13.53.23:370][ 25]LogStylusInput: Shutting down StylusInput subsystem.
+[2025.03.23-13.53.23:370][ 25]LogLevelSequenceEditor: LevelSequenceEditor subsystem deinitialized.
+[2025.03.23-13.53.23:372][ 25]LogPython: GN.GNL.PreferenceQuery - readData - Preferences file is corrupted - ERROR
+[2025.03.23-13.53.23:374][ 25]LogPython: GN.GNL.PreferenceQuery - readData - Backup of the corrupt preferences file already exists at C:/Users/ricca/Documents\PolygonFlow\Dash\prefs_corrupt_backup.json, unable to create a new one. - ERROR
+[2025.03.23-13.53.23:375][ 25]LogPython: GN.GNL.PreferenceQuery - readData - Preferences file is corrupted - ERROR
+[2025.03.23-13.53.23:375][ 25]LogPython: GN.GNL.PreferenceQuery - readData - Backup of the corrupt preferences file already exists at C:/Users/ricca/Documents\PolygonFlow\Dash\prefs_corrupt_backup.json, unable to create a new one. - ERROR
+[2025.03.23-13.53.24:296][ 25]LogPython: GN.GNL.PreferenceQuery - readData - Preferences file is corrupted - ERROR
+[2025.03.23-13.53.24:296][ 25]LogPython: GN.GNL.PreferenceQuery - readData - Backup of the corrupt preferences file already exists at C:/Users/ricca/Documents\PolygonFlow\Dash\prefs_corrupt_backup.json, unable to create a new one. - ERROR
+[2025.03.23-13.53.24:297][ 25]LogPython: GN.GNL.PreferenceQuery - readData - Preferences file is corrupted - ERROR
+[2025.03.23-13.53.24:297][ 25]LogPython: GN.GNL.PreferenceQuery - readData - Backup of the corrupt preferences file already exists at C:/Users/ricca/Documents\PolygonFlow\Dash\prefs_corrupt_backup.json, unable to create a new one. - ERROR
+[2025.03.23-13.53.24:299][ 25]LogPython: QNetworkAccessManager has been safely shut down.
+
+[2025.03.23-13.53.24:301][ 25]LogStudioTelemetry: Ended StudioTelemetry Session
+[2025.03.23-13.53.24:306][ 25]LogAnalytics: Display: [UEEditor.Rocket.Release] Destroying ET Analytics provider
+[2025.03.23-13.53.24:306][ 25]LogAnalytics: Display: [UEEditor.Rocket.Release] Ended ET Analytics provider session
+[2025.03.23-13.53.24:306][ 25]LogAnalytics: Display: [UEEditor.Rocket.Release] Destroyed ET Analytics provider
+[2025.03.23-13.53.24:309][ 25]LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: AudioMixerXAudio2)...
+[2025.03.23-13.53.24:309][ 25]LogAudio: Display: Destroying 1 Remaining Audio Device(s)...
+[2025.03.23-13.53.24:309][ 25]LogAudio: Display: Audio Device unregistered from world 'Demo1'.
+[2025.03.23-13.53.24:309][ 25]LogAudio: Display: Shutting down audio device while 1 references to it are still alive. For more information, compile with INSTRUMENT_AUDIODEVICE_HANDLES.
+[2025.03.23-13.53.24:309][ 25]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2025.03.23-13.53.24:311][ 25]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2025.03.23-13.53.24:315][ 25]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID -1
+[2025.03.23-13.53.24:315][ 25]LogAudio: Display: Audio Device Manager Shutdown
+[2025.03.23-13.53.24:321][ 25]LogSlate: Slate User Destroyed.  User Index 0, Is Virtual User: 0
+[2025.03.23-13.53.24:321][ 25]LogExit: Preparing to exit.
+[2025.03.23-13.53.24:326][ 25]LogPython: >>>> DESTROYING LIBRARIES
+
+[2025.03.23-13.53.24:336][ 25]LogPython: >>>> DESTROYING LIBRARIES_INSTANCES
+
+[2025.03.23-13.53.24:348][ 25]LogPython: >>>> DESTROYING SAFE THREADS
+
+[2025.03.23-13.53.24:362][ 25]LogPython: THREAD POOL DONE: True
+
+[2025.03.23-13.53.24:421][ 25]LogUObjectHash: Compacting FUObjectHashTables data took   1.64ms
+[2025.03.23-13.53.24:535][ 25]LogPython: Error: Sentry is attempting to send 1 pending events
+
+[2025.03.23-13.53.24:540][ 25]LogPython: Error: Waiting up to 2 seconds
+
+[2025.03.23-13.53.24:552][ 25]LogPython: Error: Press Ctrl-Break to quit
+
+[2025.03.23-13.53.26:044][ 25]LogEditorDataStorage: Deinitializing
+[2025.03.23-13.53.26:361][ 25]LogDemo: Cleaned up 0 splitscreen connections, owner deletion: enabled
+[2025.03.23-13.53.26:381][ 25]LogExit: Editor shut down
+[2025.03.23-13.53.26:384][ 25]LogExit: Transaction tracking system shut down
+[2025.03.23-13.53.26:585][ 25]LogExit: Object subsystem successfully closed.
+[2025.03.23-13.53.26:678][ 25]LogShaderCompilers: Display: Shaders left to compile 0
+[2025.03.23-13.53.27:713][ 25]LogMemoryProfiler: Shutdown
+[2025.03.23-13.53.27:713][ 25]LogNetworkingProfiler: Shutdown
+[2025.03.23-13.53.27:713][ 25]LoadingProfiler: Shutdown
+[2025.03.23-13.53.27:713][ 25]LogTimingProfiler: Shutdown
+[2025.03.23-13.53.28:029][ 25]LogChaosDD: Chaos Debug Draw Shutdown
+[2025.03.23-13.53.28:054][ 25]LogHttp: Warning: [FHttpManager::Shutdown] Unbinding delegates for 1 outstanding Http Requests:
+[2025.03.23-13.53.28:054][ 25]LogHttp: Warning: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B864205F8-4655-BCF1-4022-F2B41A73A2AA%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.5.3-39772772%2B%2B%2BUE5%2BRelease-5.5&UserID=606e9eb4451b16e7b08bb9895e071cce%7C152ae76fe5d54b778f8d0db489227f42%7C0e2ddfcf-b0dd-40b2-8d88-d6530b005f09&AppEnvironment=datacollector-binary&UploadType=eteventstream] refs=[2] status=Processing
+[2025.03.23-13.53.28:610][ 25]LogEOSSDK: FEOSSDKManager::Shutdown EOS_Shutdown Result=[EOS_Success]
+[2025.03.23-13.53.28:610][ 25]LogStudioTelemetry: Display: Shutdown StudioTelemetry Module
+[2025.03.23-13.53.28:610][ 25]LogNFORDenoise: NFORDenoise function shutting down
+[2025.03.23-13.53.28:610][ 25]RenderDocPlugin: plugin has been unloaded.
+[2025.03.23-13.53.28:610][ 25]LogXGEController: Cleaning working directory: C:/Users/ricca/AppData/Local/Temp/UnrealXGEWorkingDir/
+[2025.03.23-13.53.28:611][ 25]LogIris: FNetObjectFactoryRegistry::UnregisterFactory is unregistering factory: None name: NetActorFactory id: 0
+[2025.03.23-13.53.28:611][ 25]LogIris: FNetObjectFactoryRegistry::UnregisterFactory is unregistering factory: None name: NetSubObjectFactory id: 1
+[2025.03.23-13.53.28:611][ 25]LogPakFile: Destroying PakPlatformFile
+[2025.03.23-13.53.28:791][ 25]LogD3D12RHI: ~FD3D12DynamicRHI
+[2025.03.23-13.53.28:852][ 25]LogExit: Exiting.
+[2025.03.23-13.53.28:863][ 25]Log file closed, 03/23/25 14:53:28
