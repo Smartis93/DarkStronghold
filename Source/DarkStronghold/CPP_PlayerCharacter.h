@@ -8,6 +8,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "CPP_AC_InputBuffer.h"
+#include "Darkstronghold/CombatDefs.h"
 #include "CPP_PlayerCharacter.generated.h"
 
 // Forward declaration

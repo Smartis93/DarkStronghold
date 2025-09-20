@@ -9,6 +9,7 @@ UCPP_AC_InputBuffer::UCPP_AC_InputBuffer()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
+	BufferedAttackType = EAttackType::None;
 
 }
 
@@ -35,6 +36,21 @@ void UCPP_AC_InputBuffer::CloseBufferWindow()
 void UCPP_AC_InputBuffer::ClearBufferInput()
 {
 	bIsInputBuffered = false;
+	BufferedAttackType = EAttackType::None;
+	UE_LOG(LogTemp, Log, TEXT("Input Buffer Cleared"));
+}
+
+void UCPP_AC_InputBuffer::TryBufferAttack(EAttackType AttackType)
+{
+	if (!bCanBuffer) return;
+	BufferedAttackType = AttackType;
+	bIsInputBuffered = true;
+	UE_LOG(LogTemp, Log, TEXT("Buffered %s"), *UEnum::GetValueAsString(AttackType))
+}
+
+EAttackType UCPP_AC_InputBuffer::GetBufferedAttackType() const
+{
+	return BufferedAttackType;
 }
 
 

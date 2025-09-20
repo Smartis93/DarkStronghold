@@ -84,13 +84,13 @@ void ACPP_PlayerCharacter::Interact()
 void ACPP_PlayerCharacter::LightAttack()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Light Attack action triggered"));
-	// TODO: Implementa qui la logica dell'attacco leggero
+	InputBufferComponent->TryBufferAttack(EAttackType::LightAttack);
 }
 
 void ACPP_PlayerCharacter::HeavyAttack()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Heavy Attack action triggered"));
-	// TODO: Implementa qui la logica dell'attacco pesante
+	InputBufferComponent->TryBufferAttack(EAttackType::HeavyAttack);
 }
 
 void ACPP_PlayerCharacter::Dodge()

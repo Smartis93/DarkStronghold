@@ -8,6 +8,7 @@
 UENUM(BlueprintType)
 enum class EAttackType : uint8
 {
+	None UMETA(DisplayName = "None"), //in realtà non è necessario, TODO capire se serve realmente o no.
 	LightAttack UMETA(DisplayName = "Light Attack"),
 	HeavyAttack UMETA(DisplayName = "Heavy Attack")
 };
@@ -26,6 +27,24 @@ enum class ECharacterState : uint8
 //-------------------------------------------------------------------
 
 /**
+ * @brief Definisce i dati per un singolo trace di hitbox (una capsula).
+ */
+USTRUCT(BlueprintType)
+struct FHitboxTraceData
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName StartSocket;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName EndSocket;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (ClampMin = "1.0"))
+	float Radius = 10.0f; // Raggio di default di 10cm
+};
+
+/**
  * @brief Definisce i dati per un singolo attacco all'interno di una combo.
  */
 USTRUCT(BlueprintType)
@@ -33,17 +52,21 @@ struct FSingleAttackData
 {
 	GENERATED_BODY()
 
-	// Il tipo di input richiesto per eseguire questo attacco [cite: 142]
+	// Il tipo di input richiesto per eseguire questo attacco
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EAttackType AttackType;
 
-	// L'animazione da riprodurre per questo attacco [cite: 143]
+	// L'animazione da riprodurre per questo attacco
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> AnimMontage;
 
-	// Il danno base di questo attacco [cite: 144]
+	// Il danno base di questo attacco
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Damage;
+
+	/** Se questo array non è vuoto, sovrascrive la hitbox di default dell'arma. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Combat", meta=(DisplayName="Override Hitboxes"))
+	TArray<FHitboxTraceData> OverrideHitboxes;
 };
 
 
@@ -59,7 +82,8 @@ struct FComboData
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName ComboName;
     
-	// La sequenza di attacchi che compongono questa combo [cite: 139]
+	// La sequenza di attacchi che compongono questa combo
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FSingleAttackData> AttackSequence;
 };
+

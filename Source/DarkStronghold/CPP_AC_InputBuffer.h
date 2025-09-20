@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "DarkStronghold/CombatDefs.h"
 #include "CPP_AC_InputBuffer.generated.h"
 
 
@@ -28,6 +29,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Input Buffer")
 	void ClearBufferInput();
 
+	/** Tenta di bufferizzare il tipo di attacco se è possibile. */
+	UFUNCTION(BlueprintCallable, Category= "Input Buffer")
+	void TryBufferAttack(EAttackType AttackType);
+
+	/** Restituisce il tipo di attacco bufferizzato. */
+	UFUNCTION(BlueprintPure, Category = "Input Buffer")
+	EAttackType GetBufferedAttackType() const;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -39,6 +48,10 @@ protected:
 	/** Se true, è stato bufferizzato un input. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Input Buffer", meta = (AllowPrivateAccess = "true"))
 	bool bIsInputBuffered = false;
+
+	/** Tipo di attacco bufferizzato. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Input Buffer", meta = (AllowPrivateAccess = "true"))
+	EAttackType BufferedAttackType = EAttackType::None;
 
 public:	
 	// Called every frame
