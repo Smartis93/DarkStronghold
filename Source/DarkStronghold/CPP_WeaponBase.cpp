@@ -2,6 +2,10 @@
 
 
 #include "CPP_WeaponBase.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "DrawDebugHelpers.h"
+#include "CPP_DA_WeaponData.h"
 
 // Sets default values
 ACPP_WeaponBase::ACPP_WeaponBase()
@@ -11,29 +15,47 @@ ACPP_WeaponBase::ACPP_WeaponBase()
 	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Weapon Mesh"));
 	RootComponent = WeaponMesh;
 	PickupTrigger = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Pickup Trigger"));
-	PickupTrigger->SetupAttachment(WeaponMesh);
+	PickupTrigger->SetupAttachment(RootComponent); //Buona pratica attaccarlo al root e non al mesh, non si sa mai se viene cambiato il root
 
 }
 
+#if WITH_EDITOR
+void ACPP_WeaponBase::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+{
+	// Chiama sempre la funzione della classe base per prima cosa
+	Super::PostEditChangeProperty(PropertyChangedEvent);
+
+	// Controlla se la proprietà modificata è il nostro Data Asset
+	if (PropertyChangedEvent.GetPropertyName() == GET_MEMBER_NAME_CHECKED(ACPP_WeaponBase, WeaponDataAsset))
+	{
+		DrawDefaultHitboxPreview();
+	}
+}
+#endif
+
 void ACPP_WeaponBase::DrawDefaultHitboxPreview()
 {
+	// Se l'arma è in un mondo di gioco, non disegnare nulla.
+	// Questo assicura che il disegno avvenga solo nell'editor.
+	if (GetWorld() && GetWorld()->IsGameWorld())
+	{
+		return;
+	}
+	
+	// Cancella le vecchie linee di debug persistenti associate a questo attore
+	FlushPersistentDebugLines(GetWorld());
+
 	if (WeaponDataAsset && WeaponMesh)
 	{
 		for (const FHitboxTraceData& Hitbox : WeaponDataAsset->DefaultHitboxTraces)
 		{
 			const FVector Start = WeaponMesh->GetSocketLocation(Hitbox.StartSocket);
 			const FVector End = WeaponMesh->GetSocketLocation(Hitbox.EndSocket);
-            
-			// Calcola l'altezza della capsula
-			const float HalfHeight = (Start - End).Size() / 2.0f;
-
-			// Calcola il centro della capsula
-			const FVector Center = (Start + End) / 2.0f;
-
-			// Calcola la rotazione della capsula
-			const FQuat Rotation = FRotationMatrix::MakeFromZ((End - Start).GetSafeNormal()).ToQuat();
-
-			DrawDebugCapsule(GetWorld(), Center, HalfHeight, Hitbox.Radius, Rotation, FColor::Red, false, 5.0f);
+			
+			// Disegna una capsula persistente (durata -1)
+			DrawDebugCapsule(GetWorld(), (Start + End) / 2.0f, (Start - End).Size() / 2.0f + Hitbox.Radius, Hitbox.Radius, 
+							 FQuat::FindBetweenNormals(FVector::UpVector, (End - Start).GetSafeNormal()), 
+							 FColor::Red, true, -1.0f, 0, 1.0f);
 		}
 	}
 }

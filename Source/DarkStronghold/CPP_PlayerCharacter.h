@@ -5,17 +5,14 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
-#include "EnhancedInputSubsystems.h"
-#include "EnhancedInputComponent.h"
-#include "CPP_AC_InputBuffer.h"
-#include "Darkstronghold/CombatDefs.h"
+
 #include "CPP_PlayerCharacter.generated.h"
 
 // Forward declaration
 class UInputMappingContext;
 class UInputAction;
 class UCPP_AC_InputBuffer;
-
+class UCPP_AC_Combat;
 
 UCLASS()
 class DARKSTRONGHOLD_API ACPP_PlayerCharacter : public ACharacter
@@ -67,6 +64,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category= "Components")
 	UCPP_AC_InputBuffer* InputBufferComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category= "Components")
+	UCPP_AC_Combat* CombatComponent;
 	
 public:	
 	// Called every frame

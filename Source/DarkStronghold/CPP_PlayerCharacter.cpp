@@ -2,6 +2,10 @@
 
 
 #include "CPP_PlayerCharacter.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "CPP_AC_InputBuffer.h"
+#include "CPP_AC_Combat.h"
 
 // Sets default values
 ACPP_PlayerCharacter::ACPP_PlayerCharacter()

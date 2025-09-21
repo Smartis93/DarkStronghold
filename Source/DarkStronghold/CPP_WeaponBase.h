@@ -4,11 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/StaticMeshComponent.h"
-#include "Components/CapsuleComponent.h"
-#include "DrawDebugHelpers.h"
-#include "CPP_DA_WeaponData.h"
 #include "CPP_WeaponBase.generated.h"
+
+// Forward Declarations
+class UStaticMeshComponent;
+class UCapsuleComponent;
+class UCPP_DA_WeaponData;
 
 UCLASS()
 class DARKSTRONGHOLD_API ACPP_WeaponBase : public AActor
@@ -18,6 +19,11 @@ class DARKSTRONGHOLD_API ACPP_WeaponBase : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ACPP_WeaponBase();
+
+#if WITH_EDITOR
+	// Chiamata nell'editor quando una proprietà viene modificata
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+#endif
 
 	/** Funzione per disegnare le hitbox di default direttamente nell'editor. */
 	UFUNCTION(CallInEditor, Category = "Debug")
