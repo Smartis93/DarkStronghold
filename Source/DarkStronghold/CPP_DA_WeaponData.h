@@ -8,18 +8,27 @@
 #include "CPP_DA_WeaponData.generated.h"
 
 /**
- * 
+ * @class UCPP_DA_WeaponData
+ * @brief Un Data Asset che contiene l'intero moveset di un'arma.
+ * Questo asset funge da "database" per una singola arma, definendo tutte le sue combo e danni dei singoli attacchi
  */
 UCLASS()
 class DARKSTRONGHOLD_API UCPP_DA_WeaponData : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
 
-	public:
+public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Hitbox Default")
+	/**
+	 * @brief La configurazione delle hitbox di default per quest'arma.
+	 * Vengono usate per qualsiasi attacco che non abbia un suo set di hitbox di override.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat Data")
 	TArray<FHitboxTraceData> DefaultHitboxTraces;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category= "Moveset Data")
+	/**
+	 * @brief L'elenco di tutte le combo che quest'arma può eseguire.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat Data")
 	TArray<FComboData> Combos;
 };

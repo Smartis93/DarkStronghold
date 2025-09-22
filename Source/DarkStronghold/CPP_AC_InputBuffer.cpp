@@ -21,6 +21,11 @@ void UCPP_AC_InputBuffer::BeginPlay()
 	
 }
 
+void UCPP_AC_InputBuffer::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
+
 void UCPP_AC_InputBuffer::OpenBufferWindow()
 {
 	bCanBuffer = true;
@@ -37,27 +42,18 @@ void UCPP_AC_InputBuffer::ClearBufferInput()
 {
 	bIsInputBuffered = false;
 	BufferedAttackType = EAttackType::None;
-	UE_LOG(LogTemp, Log, TEXT("Input Buffer Cleared"));
 }
 
 void UCPP_AC_InputBuffer::TryBufferAttack(EAttackType AttackType)
 {
 	if (!bCanBuffer) return;
+	
 	BufferedAttackType = AttackType;
 	bIsInputBuffered = true;
-	UE_LOG(LogTemp, Log, TEXT("Buffered %s"), *UEnum::GetValueAsString(AttackType))
+	UE_LOG(LogTemp, Log, TEXT("Buffered Attack: %s"), *UEnum::GetValueAsString(AttackType));
 }
 
 EAttackType UCPP_AC_InputBuffer::GetBufferedAttackType() const
 {
 	return BufferedAttackType;
-}
-
-
-// Called every frame
-void UCPP_AC_InputBuffer::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }

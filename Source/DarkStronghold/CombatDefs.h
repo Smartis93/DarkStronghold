@@ -4,16 +4,20 @@
 #include "Engine/DataTable.h" // Necessario per poter usare le struct nei Data Asset e Data Table
 #include "CombatDefs.generated.h"
 
-// Enum per i tipi di attacco
+//====================================================================================
+// ENUMS
+//====================================================================================
+
+/** Tipi di Attacco */
 UENUM(BlueprintType)
 enum class EAttackType : uint8
 {
-	None UMETA(DisplayName = "None"), //in realtà non è necessario, TODO capire se serve realmente o no.
-	LightAttack UMETA(DisplayName = "Light Attack"),
-	HeavyAttack UMETA(DisplayName = "Heavy Attack")
+	None			UMETA(DisplayName = "None"),
+	LightAttack		UMETA(DisplayName = "Light Attack"),
+	HeavyAttack		UMETA(DisplayName = "Heavy Attack")
 };
 
-// Enum per gli stati del personaggio
+/** Stati del Personaggio */ //TODO. Da ampliare in futuro. (Attacchi Aerei?)
 UENUM(BlueprintType)
 enum class ECharacterState : uint8
 {
@@ -22,12 +26,12 @@ enum class ECharacterState : uint8
 	Dodging     UMETA(DisplayName = "Dodging")
 };
 
-//-------------------------------------------------------------------
-// STRUCTS PER IL DATA ASSET DELLE ARMI
-//-------------------------------------------------------------------
+//====================================================================================
+// STRUCTS
+//====================================================================================
 
 /**
- * @brief Definisce i dati per un singolo trace di hitbox (una capsula).
+ * Struct per le hitbox, così nessuno può sbagliare
  */
 USTRUCT(BlueprintType)
 struct FHitboxTraceData
@@ -41,48 +45,43 @@ struct FHitboxTraceData
 	FName EndSocket;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (ClampMin = "1.0"))
-	float Radius = 10.0f; // Raggio di default di 10cm
+	float Radius = 10.0f;
 };
 
 /**
- * @brief Definisce i dati per un singolo attacco all'interno di una combo.
+ * Struct della composisioze del singolo attacco
  */
 USTRUCT(BlueprintType)
 struct FSingleAttackData
 {
 	GENERATED_BODY()
-
-	// Il tipo di input richiesto per eseguire questo attacco
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EAttackType AttackType;
-
-	// L'animazione da riprodurre per questo attacco
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> AnimMontage;
 
-	// Il danno base di questo attacco
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Damage;
 
-	/** Se questo array non è vuoto, sovrascrive la hitbox di default dell'arma. */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Combat", meta=(DisplayName="Override Hitboxes"))
+	//TODO. Non so se mai mi serve, quindi essendo un override non rompo niente, l'importante è quello base.
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta=(DisplayName="Override Hitboxes"))
 	TArray<FHitboxTraceData> OverrideHitboxes;
 };
 
 
 /**
- * @brief Definisce un'intera sequenza di combo.
+ * Struct delle Combo per il DataAsset
  */
 USTRUCT(BlueprintType)
 struct FComboData
 {
 	GENERATED_BODY()
 
-	// Il nome identificativo della combo (es. "Light Combo 1")
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName ComboName;
     
-	// La sequenza di attacchi che compongono questa combo
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FSingleAttackData> AttackSequence;
 };

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "CPP_I_Pickup.h"
 #include "CPP_WeaponBase.generated.h"
 
 // Forward Declarations
@@ -11,42 +12,70 @@ class UStaticMeshComponent;
 class UCapsuleComponent;
 class UCPP_DA_WeaponData;
 
+/**
+ * @class ACPP_WeaponBase
+ * @brief La classe base C++ per tutte le armi nel gioco.
+ *
+ * Questo actor rappresenta un'arma fisica nel mondo. Contiene tutti componenti di base (mesh, trigger),
+ * implementa l'interfaccia di Pickup/Drop e contiene un riferimento a un Data Asset (UCPP_DA_WeaponData)
+ */
 UCLASS()
-class DARKSTRONGHOLD_API ACPP_WeaponBase : public AActor
+class DARKSTRONGHOLD_API ACPP_WeaponBase : public AActor, public ICPP_I_Pickup
 {
 	GENERATED_BODY()
 	
-public:	
+public:
+	
 	// Sets default values for this actor's properties
 	ACPP_WeaponBase();
 
-#if WITH_EDITOR
-	// Chiamata nell'editor quando una proprietà viene modificata
-	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
-#endif
+	/** Getter Data Asset del moveset associato a quest'arma. */
+	UCPP_DA_WeaponData* GetWeaponDataAsset() const { return WeaponDataAsset; }
 
-	/** Funzione per disegnare le hitbox di default direttamente nell'editor. */
-	UFUNCTION(CallInEditor, Category = "Debug")
-	void DrawDefaultHitboxPreview();
+	// --- Interfaccia ICPP_I_Pickup ---
+	
+	virtual void Pickup_Implementation(ACharacter* Character) override;
+	virtual void Drop_Implementation() override;
 
 protected:
-	// Called when the game starts or when spawned
+	
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
+	// --- Componenti ---
+
+	/** La mesh visibile dell'arma. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UStaticMeshComponent> WeaponMesh;
 
-	// Questo è il nostro "contratto": ogni arma avrà un riferimento a un moveset.
+	/** Il trigger per il PickUp dell'arma. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	TObjectPtr<UCapsuleComponent> PickupTrigger;
+
+	// --- Dati dell'arma ---
+	
+	/** Il Data Asset di quest'arma. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
 	TObjectPtr<UCPP_DA_WeaponData> WeaponDataAsset;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Trigger")
-	TObjectPtr<UCapsuleComponent> PickupTrigger;
+	// --- Debug ---
+	
+#if WITH_EDITOR
+	/** Funzione chiamata automaticamente dall'editor quando una proprietà di questo attore viene modificata. */
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+#endif
 
+	//Nota: Avevo provato con un bottone ma senza successo
+	
+	/** Mostra una preview visiva delle hitbox di default. */
+	UPROPERTY(EditAnywhere, Category = "Debug", meta=(DisplayName="Show Hitbox Preview"))
+	bool bDrawHitboxPreview;
+	
+	/** Pulisce la preview visiva delle hitbox. */
+	UPROPERTY(EditAnywhere, Category = "Debug", meta=(DisplayName="Hide Hitbox Preview"))
+	bool bClearHitboxPreview;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	UCPP_DA_WeaponData* GetWeaponDataAsset() const {return WeaponDataAsset;}
+private:
+	/** Debug Hitbox */
+	void DrawDefaultHitboxPreview();
 };
